@@ -1,0 +1,28 @@
+.env
+.env.*
+!.env.example
+
+**/target/
+**/.venv/
+**/venv/
+**/__pycache__/
+
+# Cau hinh chua thong tin rieng
+.env
+.env.*
+!.env.example
+client_secret*.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Java
+target/
+
+# File cua IDE va log
+.idea/
+.vscode/
+*.log

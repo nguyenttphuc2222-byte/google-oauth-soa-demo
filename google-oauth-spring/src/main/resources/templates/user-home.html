@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 40px;
+        }
+
+        img {
+            border-radius: 50%;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Welcome!</h1>
+
+    <img th:src="${picture}"
+         alt="Google Avatar"
+         width="100">
+
+    <h2 th:text="${name}"></h2>
+
+    <p th:text="${email}"></p>
+
+    <a class="btn" href="/products">View Products</a>
+
+    <a class="btn" href="/logout">Logout</a>
+
+</body>
+
+</html>
+

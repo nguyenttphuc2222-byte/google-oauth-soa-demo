@@ -1,0 +1,22 @@
+
+C:\HK1_nam3\All Project\GoogleOAuthSpring\google-oauth-spring\google-oauth-spring>
+chạy:
+Test-Path .\mvnw.cmd
+=> True 
+chạy: 
+.\mvnw.cmd spring-boot:run
+
+
+
+C:\HK1_nam3\All Project\GoogleOAuthSpring\product-service>
+chạy:
+.\venv\Scripts\Activate.ps1
+=> (venv)....
+chạy:
+uvicorn main:app --reload --port 8000
+
+
+==> xong vào broswer: http://localhost:8080
+
+
+
