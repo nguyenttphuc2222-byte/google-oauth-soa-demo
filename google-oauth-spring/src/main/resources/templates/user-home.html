@@ -3,54 +3,62 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f5f5f5;
-            padding: 40px;
-        }
+    <title>My account | Product Portal</title>
 
-        img {
-            border-radius: 50%;
-        }
-
-        .btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: white;
-            background-color: #333;
-            border-radius: 5px;
-        }
-
-        .btn:hover {
-            background-color: #555;
-        }
-    </style>
-
+    <link rel="stylesheet"
+          href="/css/auth.css"
+          th:href="@{/css/auth.css}">
 </head>
 
 <body>
+    <main class="auth-shell">
+        <section class="auth-card" aria-labelledby="account-title">
 
-    <h1>Welcome!</h1>
+            <div class="brand">Product Portal</div>
 
-    <img th:src="${picture}"
-         alt="Google Avatar"
-         width="100">
+            <span class="status-badge">Signed in</span>
 
-    <h2 th:text="${name}"></h2>
+            <h1 id="account-title">Welcome!</h1>
 
-    <p th:text="${email}"></p>
+            <p class="intro">
+                You're signed in and ready to explore.
+            </p>
 
-    <a class="btn" href="/products">View Products</a>
+            <!-- Chỉ hiển thị tên và email, không có avatar. -->
+            <dl class="account-details">
 
-    <a class="btn" href="/logout">Logout</a>
+                <div>
+                    <dt>Full name</dt>
+                    <dd th:text="${name}">Your name</dd>
+                </div>
 
+                <div>
+                    <dt>Email address</dt>
+                    <dd th:text="${email}">Your email address</dd>
+                </div>
+
+            </dl>
+
+            <div class="actions">
+
+                <a class="button button-primary"
+                   href="/products"
+                   th:href="@{/products}">
+                    View Products
+                </a>
+
+                <a class="button button-secondary"
+                   href="/logout"
+                   th:href="@{/logout}">
+                    Logout
+                </a>
+
+            </div>
+
+        </section>
+    </main>
 </body>
 
 </html>
-

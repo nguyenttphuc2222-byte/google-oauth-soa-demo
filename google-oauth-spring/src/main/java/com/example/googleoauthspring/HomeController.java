@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
+    // Trang đăng nhập.
+    @GetMapping({"/", "/login"})
     public String home() {
         return "home";
     }
 
+    // Trang chính sau khi đăng nhập.
     @GetMapping("/home")
     public String userHome(
             @AuthenticationPrincipal OidcUser user,
@@ -21,9 +23,14 @@ public class HomeController {
 
         model.addAttribute("name", user.getFullName());
         model.addAttribute("email", user.getEmail());
-        model.addAttribute("picture", user.getPicture());
 
         return "user-home";
     }
-}
 
+    // GET /logout chỉ hiển thị trang xác nhận.
+    // POST /logout do Spring Security xử lý để đăng xuất.
+    @GetMapping("/logout")
+    public String logoutConfirmation() {
+        return "logout-confirm";
+    }
+}

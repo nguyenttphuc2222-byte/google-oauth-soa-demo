@@ -14,18 +14,24 @@ public class SecurityConfig {
 
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/oauth2/**", "/login/**").permitAll()
+                .requestMatchers(
+                    "/",
+                    "/login",
+                    "/css/**",
+                    "/oauth2/**",
+                    "/login/**"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
             .oauth2Login(oauth -> oauth
+                .loginPage("/login")
+                .failureUrl("/login?error")
                 .defaultSuccessUrl("/home", true)
             )
             .logout(logout -> logout
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login?logout")
             );
 
         return http.build();
     }
 }
-
-

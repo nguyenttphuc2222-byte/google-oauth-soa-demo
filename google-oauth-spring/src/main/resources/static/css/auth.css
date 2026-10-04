@@ -1,0 +1,257 @@
+:root {
+    font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Arial, sans-serif;
+    color: #172b4d;
+    background: #f4f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* Đưa khung nội dung vào giữa màn hình. */
+.auth-shell {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            #e6efff 0%,
+            transparent 65%
+        ),
+        #f4f7fb;
+}
+
+/* Khung trắng của trang đăng nhập, trang chính và logout. */
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 36px 28px;
+    background: #ffffff;
+    border: 1px solid #e3e9f2;
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(25, 48, 83, 0.07);
+    text-align: center;
+}
+
+.brand {
+    margin-bottom: 28px;
+    color: #245ad3;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: 30px;
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+}
+
+.intro {
+    margin: 0 0 28px;
+    color: #626f83;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+/* Định dạng chung của nút và liên kết dạng nút. */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.button:focus-visible {
+    outline: 3px solid #3974ec;
+    outline-offset: 4px;
+}
+
+/* Nút đăng nhập Google. */
+.google-button {
+    width: 100%;
+    color: #25324a;
+    background: #ffffff;
+    border-color: #cfd7e4;
+}
+
+.google-button:hover {
+    background: #f7f9fd;
+    border-color: #9eacc1;
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.supporting-text {
+    margin: 18px 0 0;
+    color: #626f83;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.card-footer {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #edf0f5;
+    color: #626f83;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Thông báo đăng nhập lỗi hoặc đăng xuất thành công. */
+.notice {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    border: 1px solid;
+    border-radius: 9px;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.notice-error {
+    color: #9f2222;
+    background: #fff3f2;
+    border-color: #f5ceca;
+}
+
+.notice-success {
+    color: #176443;
+    background: #eefaf3;
+    border-color: #bfe5d1;
+}
+
+/* Hàng chứa các nút chức năng. */
+.actions {
+    display: flex;
+    gap: 12px;
+    margin: 0;
+}
+
+.actions .button {
+    flex: 1;
+}
+
+.button-primary {
+    color: #ffffff;
+    background: #245ad3;
+}
+
+.button-primary:hover {
+    background: #1949b5;
+}
+
+.button-secondary {
+    color: #36455d;
+    background: #ffffff;
+    border-color: #cfd7e4;
+}
+
+.button-secondary:hover {
+    background: #f4f7fb;
+}
+
+/* Nút Cancel có nền đỏ theo yêu cầu. */
+.button-cancel {
+    color: #ffffff;
+    background: #d32f2f;
+}
+
+.button-cancel:hover {
+    background: #b71c1c;
+}
+
+/* Thông tin người dùng, không có avatar. */
+.status-badge {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #227447;
+    background: #edf8f1;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.account-details {
+    margin: 0 0 28px;
+    padding: 4px 18px;
+    border: 1px solid #e7ecf3;
+    border-radius: 12px;
+    background: #fafbfd;
+    text-align: left;
+}
+
+.account-details div {
+    padding: 16px 0;
+}
+
+.account-details div + div {
+    border-top: 1px solid #e7ecf3;
+}
+
+.account-details dt {
+    margin-bottom: 5px;
+    color: #626f83;
+    font-size: 12px;
+}
+
+.account-details dd {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Điều chỉnh bố cục trên màn hình nhỏ. */
+@media (max-width: 480px) {
+    .auth-shell {
+        padding: 20px 16px;
+    }
+
+    .auth-card {
+        padding: 32px 24px 24px;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 360px) {
+    .actions {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}

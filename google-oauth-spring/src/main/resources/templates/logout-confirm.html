@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Confirm logout | Product Portal</title>
+
+    <link rel="stylesheet"
+          href="/css/auth.css"
+          th:href="@{/css/auth.css}">
+</head>
+
+<body>
+    <main class="auth-shell">
+        <section class="auth-card" aria-labelledby="logout-title">
+
+            <div class="brand">Product Portal</div>
+
+            <h1 id="logout-title">Ready to log out?</h1>
+
+            <p class="intro">
+                You will be signed out of Product Portal.
+                You can sign back in with Google at any time.
+            </p>
+
+            <!--
+                Thymeleaf tự thêm CSRF token vào form POST
+                khi xử lý th:action.
+            -->
+            <form class="actions"
+                  method="post"
+                  th:action="@{/logout}">
+
+                <!-- Cancel chỉ quay về trang chính. -->
+                <a class="button button-cancel"
+                   href="/home"
+                   th:href="@{/home}">
+                    Cancel
+                </a>
+
+                <!-- Chỉ nút này mới gửi yêu cầu đăng xuất. -->
+                <button class="button button-primary"
+                        type="submit">
+                    Logout
+                </button>
+
+            </form>
+
+            <p class="supporting-text">
+                Choose Cancel to stay signed in.
+            </p>
+
+        </section>
+    </main>
+</body>
+
+</html>
