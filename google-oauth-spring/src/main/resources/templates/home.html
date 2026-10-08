@@ -39,6 +39,92 @@
                 You have been logged out successfully.
             </div>
 
+
+            <!-- Giao diện demo: chưa gửi thông tin đến server. -->
+            <div class="local-login-demo"
+                 role="group"
+                 aria-label="Account sign-in"
+                 aria-describedby="local-login-note">
+
+                <div class="local-login-field">
+                    <label for="username">Username</label>
+
+                    <input id="username"
+                           name="username"
+                           type="text"
+                           placeholder="Enter your username"
+                           autocomplete="username"
+                           autocapitalize="none"
+                           spellcheck="false">
+                </div>
+
+                <div class="local-login-field">
+                    <label for="password">Password</label>
+
+                    <div class="password-input-wrap">
+                        <input id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password">
+
+                        <button id="password-toggle"
+                                class="password-toggle"
+                                type="button"
+                                aria-label="Show password"
+                                aria-controls="password"
+                                title="Show password">
+
+                            <!-- Mắt nhắm: mật khẩu đang được che. -->
+                            <svg class="eye-closed"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M3 9c2.5 3.3 5.5 5 9 5s6.5-1.7 9-5"/>
+                                <path d="m3 15 2.2-3M7 18l1-4M12 19v-5M17 18l-1-4M21 15l-2.2-3"/>
+                            </svg>
+
+                            <!-- Mắt mở: mật khẩu đang hiển thị. -->
+                            <svg class="eye-open is-hidden"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="button button-primary"
+                            type="button"
+                            disabled>
+                        Sign in
+                    </button>
+
+                    <button class="button button-secondary"
+                            type="button"
+                            disabled>
+                        Register
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="login-divider" aria-hidden="true">
+                <span>or</span>
+            </div>
+
+
             <a class="button google-button"
                href="/oauth2/authorization/google"
                th:href="@{/oauth2/authorization/google}">
@@ -65,6 +151,49 @@
 
         </section>
     </main>
+
+    <script>
+        (() => {
+            const passwordInput = document.getElementById("password");
+            const toggleButton = document.getElementById("password-toggle");
+            const eyeClosed = toggleButton.querySelector(".eye-closed");
+            const eyeOpen = toggleButton.querySelector(".eye-open");
+
+            toggleButton.addEventListener("click", () => {
+                const showPassword = passwordInput.type === "password";
+
+                passwordInput.type = showPassword ? "text" : "password";
+
+                eyeClosed.classList.toggle("is-hidden", showPassword);
+                eyeOpen.classList.toggle("is-hidden", !showPassword);
+
+                const label = showPassword
+                    ? "Hide password"
+                    : "Show password";
+
+                toggleButton.setAttribute("aria-label", label);
+                toggleButton.title = label;
+            });
+        })();
+    </script> 
+
+    <script>
+        (() => {
+            const url = new URL(window.location.href);
+
+            if (url.searchParams.has("logout")) {
+                // Xóa tham số logout khỏi URL.
+                url.searchParams.delete("logout");
+
+                // Cập nhật thanh địa chỉ mà không tải lại trang.
+                window.history.replaceState(
+                    window.history.state,
+                    "",
+                    url.toString()
+                );
+            }
+        })();
+    </script>
 </body>
 
 </html>

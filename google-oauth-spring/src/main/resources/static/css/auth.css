@@ -255,3 +255,134 @@ h1 {
         transition: none;
     }
 }
+
+
+/* Giao diện đăng nhập bằng tài khoản: hiện chỉ dùng để demo. */
+.local-login-demo {
+    text-align: left;
+}
+
+.local-login-field {
+    margin-bottom: 18px;
+}
+
+.local-login-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #36455d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.local-login-field input {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #cfd7e4;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #172b4d;
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.local-login-field input::placeholder {
+    color: #7a8699;
+    opacity: 1;
+}
+
+.local-login-field input:focus {
+    border-color: #3974ec;
+    outline: 3px solid rgba(57, 116, 236, 0.18);
+    outline-offset: 1px;
+}
+
+/* Hai nút bị vô hiệu hóa, kể cả khi di chuột lên. */
+.local-login-demo .button:disabled,
+.local-login-demo .button:disabled:hover {
+    color: #626f83;
+    background: #e9edf4;
+    border-color: #d9e0ea;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.local-login-note {
+    margin: 14px 0 0;
+    color: #626f83;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 24px 0;
+    color: #626f83;
+    font-size: 13px;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e3e9f2;
+}
+
+/* Nút hiện/ẩn mật khẩu nằm bên phải trong ô nhập. */
+.password-input-wrap {
+    position: relative;
+}
+
+/* Chừa khoảng trống để chữ không đè lên nút mắt. */
+.password-input-wrap input {
+    padding-right: 56px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #626f83;
+    cursor: pointer;
+}
+
+.password-toggle:hover {
+    background: #f4f7fb;
+    color: #245ad3;
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid #3974ec;
+    outline-offset: 1px;
+}
+
+.password-toggle svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+.password-toggle .is-hidden {
+    display: none;
+}
+
+/* Tránh xuất hiện thêm nút mắt mặc định của Microsoft Edge. */
+.password-input-wrap input::-ms-reveal {
+    display: none;
+}
