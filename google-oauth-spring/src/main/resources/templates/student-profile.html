@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hồ sơ sinh viên | TDTU</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+    <link rel="stylesheet" th:href="@{/css/students.css}">
+</head>
+<body>
+<main class="auth-shell">
+    <section class="auth-card portal-card">
+        <div class="brand">TDTU Student Portal</div>
+
+        <div class="portal-top">
+            <h1>Hồ sơ sinh viên</h1>
+            <a class="button button-secondary"
+               th:href="@{/logout}">Đăng xuất</a>
+        </div>
+
+        <p class="supporting-text">
+            Đăng nhập: <span th:text="${email}"></span>
+        </p>
+
+        <div class="notice notice-success"
+             th:if="${param.saved != null}">
+            Đã lưu thông tin.
+        </div>
+
+        <div class="notice notice-error"
+             role="alert"
+             th:if="${error != null}"
+             th:text="${error}"></div>
+
+        <form method="post" th:action="@{/students/me}">
+            <div class="profile-grid">
+                <div class="profile-field">
+                    <label for="mssv">MSSV</label>
+                    <input id="mssv"
+                           th:value="${student.mssv()}"
+                           readonly>
+                </div>
+
+                <div class="profile-field">
+                    <label for="enrollment">Năm nhập học</label>
+                    <input id="enrollment"
+                           th:value="${student.enrollment_year()}"
+                           readonly>
+                </div>
+
+                <div class="profile-field wide">
+                    <label for="full_name">Họ và tên</label>
+                    <input id="full_name" name="full_name"
+                           th:value="${form['full_name']}"
+                           th:readonly="${!canEdit}"
+                           maxlength="100" required>
+                </div>
+
+                <div class="profile-field">
+                    <label for="age">Tuổi</label>
+                    <input id="age" name="age" type="number"
+                           min="0" max="120" step="1"
+                           th:value="${form['age']}"
+                           th:readonly="${!canEdit}" required>
+                </div>
+
+                <div class="profile-field">
+                    <label for="gender">Giới tính</label>
+                    <select id="gender" name="gender"
+                            th:disabled="${!canEdit}" required>
+                        <option value="Nam"
+                                th:selected="${form['gender'] == 'Nam'}">
+                            Nam
+                        </option>
+                        <option value="Nữ"
+                                th:selected="${form['gender'] == 'Nữ'}">
+                            Nữ
+                        </option>
+                        <option value="Khác"
+                                th:selected="${form['gender'] == 'Khác'}">
+                            Khác
+                        </option>
+                    </select>
+                </div>
+
+                <div class="profile-field wide">
+                    <label for="phone">Số điện thoại</label>
+                    <input id="phone" name="phone" type="tel"
+                           maxlength="20"
+                           th:value="${form['phone']}"
+                           th:readonly="${!canEdit}" required>
+                </div>
+
+                <div class="profile-field wide">
+                    <label for="address">Địa chỉ nhà</label>
+                    <input id="address" name="address"
+                           maxlength="255"
+                           th:value="${form['address']}"
+                           th:readonly="${!canEdit}" required>
+                </div>
+
+                <div class="profile-field wide">
+                    <label for="student_email">
+                        Email sinh viên
+                    </label>
+                    <input id="student_email" name="student_email"
+                           type="email" maxlength="254"
+                           th:value="${form['student_email']}"
+                           th:readonly="${!canEdit}" required>
+                </div>
+
+                <div class="profile-field wide">
+                    <label for="personal_email">
+                        Email cá nhân
+                    </label>
+                    <input id="personal_email" name="personal_email"
+                           type="email" maxlength="254"
+                           th:value="${form['personal_email']}"
+                           th:readonly="${!canEdit}">
+                </div>
+            </div>
+
+            <div class="portal-actions">
+                <button class="button button-primary"
+                        type="submit"
+                        th:if="${canEdit}">
+                    Lưu thay đổi
+                </button>
+
+                <a class="button button-secondary"
+                   th:if="${!canEdit}"
+                   th:href="@{/home}">
+                    Về danh sách
+                </a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,86 @@
+.portal-card {
+    max-width: 880px;
+    text-align: left;
+}
+
+.portal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.portal-top h1 { margin: 0; }
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.profile-field { display: grid; gap: 6px; }
+.profile-field.wide { grid-column: 1 / -1; }
+.profile-field label { font-weight: 600; font-size: 14px; }
+
+.profile-field input,
+.profile-field select,
+.search-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    font: inherit;
+    border: 1px solid #cfd7e4;
+    border-radius: 8px;
+    background: white;
+    color: #172b4d;
+}
+
+.profile-field input:read-only,
+.profile-field select:disabled {
+    background: #f4f7fb;
+    color: #526176;
+    opacity: 1;
+}
+
+.portal-actions,
+.search-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.search-form input { flex: 1; min-width: 180px; }
+.student-list { list-style: none; margin: 0; padding: 0; }
+
+.student-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 130px;
+    gap: 16px;
+    padding: 16px;
+    border-bottom: 1px solid #e3e9f2;
+    text-decoration: none;
+    color: inherit;
+}
+
+.student-row span { overflow-wrap: anywhere; }
+
+a.student-row:hover,
+a.student-row:focus-visible { background: #edf3ff; }
+
+.list-heading {
+    font-weight: 700;
+    background: #f4f7fb;
+}
+
+@media (max-width: 600px) {
+    .profile-grid { grid-template-columns: 1fr; }
+
+    .student-row {
+        grid-template-columns: minmax(0, 1fr) 100px;
+        padding: 12px 4px;
+    }
+
+    .portal-card { padding: 24px 18px; }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Danh sách sinh viên | TDTU</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+    <link rel="stylesheet" th:href="@{/css/students.css}">
+</head>
+<body>
+<main class="auth-shell">
+    <section class="auth-card portal-card">
+        <div class="brand">TDTU Student Portal</div>
+
+        <div class="portal-top">
+            <h1>Danh sách sinh viên</h1>
+            <a class="button button-secondary"
+               th:href="@{/logout}">Đăng xuất</a>
+        </div>
+
+        <p class="supporting-text">
+            Đăng nhập: <span th:text="${email}"></span>
+        </p>
+
+        <span class="status-badge"
+              th:text="${localDemo}
+                  ? 'Giảng viên giả lập'
+                  : 'Giảng viên'">
+            Giảng viên
+        </span>
+
+
+        <form class="search-form"
+              method="get" th:action="@{/home}">
+            <input name="q"
+                   aria-label="Họ tên hoặc MSSV"
+                   placeholder="Nhập họ tên hoặc MSSV"
+                   th:value="${q}">
+
+            <button class="button button-primary" type="submit">
+                Tìm kiếm
+            </button>
+
+            <a class="button button-secondary"
+               th:href="@{/home}">Tất cả</a>
+        </form>
+
+        <div class="student-row list-heading">
+            <span>Họ và tên</span>
+            <span>MSSV</span>
+        </div>
+
+        <ul class="student-list">
+            <li th:each="item : ${students}">
+                <a class="student-row"
+                   th:href="@{/students/{mssv}(mssv=${item.mssv()})}">
+                    <span th:text="${item.full_name()}"></span>
+                    <span th:text="${item.mssv()}"></span>
+                </a>
+            </li>
+        </ul>
+
+        <p class="supporting-text"
+           th:if="${#lists.isEmpty(students)}">
+            Không có sinh viên phù hợp.
+        </p>
+    </section>
+</main>
+</body>
+</html>

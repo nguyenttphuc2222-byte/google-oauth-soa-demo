@@ -18,7 +18,8 @@
 
             <div class="brand">Product Portal</div>
 
-            <span class="status-badge">Signed in</span>
+            <span class="status-badge"
+                  th:text="${localDemo} ? 'Tài khoản giả lập cục bộ' : 'Signed in'">Signed in</span>
 
             <h1 id="account-title">Welcome!</h1>
 
@@ -37,6 +38,11 @@
                 <div>
                     <dt>Email address</dt>
                     <dd th:text="${email}">Your email address</dd>
+                </div>
+
+                <div>
+                    <dt>Role</dt>
+                    <dd th:text="${role}">STUDENT</dd>
                 </div>
 
             </dl>

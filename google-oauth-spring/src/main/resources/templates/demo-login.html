@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Giảng viên giả lập | TDTU Seminar</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+<main class="auth-shell">
+    <section class="auth-card">
+        <div class="brand">TDTU Seminar</div>
+        <span class="status-badge">Tài khoản giả lập</span>
+        <h1>Giảng viên Demo</h1>
+        <p class="intro">Dùng tài khoản này để thử giao diện và quyền giảng viên trên máy của bạn.</p>
+        <dl class="account-details">
+            <div><dt>Tên hiển thị</dt><dd>Giảng viên Demo</dd></div>
+            <div><dt>Email giả lập trong app</dt><dd>giangvien.demo@tdtu.edu.vn</dd></div>
+            <div><dt>Vai trò</dt><dd>LECTURER</dd></div>
+        </dl>
+        <form method="post" th:action="@{/demo/login}">
+            <button class="button button-primary" type="submit">Vào với Giảng viên Demo</button>
+        </form>
+        <p class="supporting-text">Danh tính được tạo cục bộ trong app. Tài khoản này không phải tài khoản Google do trường cấp.</p>
+        <p class="supporting-text"><a th:href="@{/login}">Quay về đăng nhập Google</a></p>
+    </section>
+</main>
+</body>
+</html>

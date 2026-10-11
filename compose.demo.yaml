@@ -1,0 +1,4 @@
+services:
+  auth-service:
+    environment:
+      SPRING_PROFILES_ACTIVE: demo
