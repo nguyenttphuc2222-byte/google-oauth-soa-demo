@@ -1,0 +1,7 @@
+.env
+target/
+data/
+*.log
+seminar-app.jar
+.idea/
+.vscode/

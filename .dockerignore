@@ -1,0 +1,6 @@
+.env
+target
+data
+.git
+seminar-app.jar
+*.log

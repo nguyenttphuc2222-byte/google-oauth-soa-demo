@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}"><meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}">
+  <title th:text="${title + ' · Seminar Hub'}">Seminar Hub</title>
+  <link rel="stylesheet" th:href="@{/static/app.css}"><script defer th:src="@{/static/app.js}"></script>
+</head><body>
+<aside th:fragment="sidebar" class="sidebar">
+ <a class="brand" href="/dashboard"><span class="brand-mark">S<span>↗</span></span><span>Seminar<span class="brand-sub">OAUTH HUB</span></span></a>
+ <div class="nav-label">KHÔNG GIAN LÀM VIỆC</div>
+ <nav aria-label="Điều hướng chính">
+  <a href="/dashboard" th:classappend="${currentPath == '/dashboard' or #strings.startsWith(currentPath,'/submissions/')} ? 'active'"><span>▦</span>Tổng quan bài nộp</a>
+  <a th:if="${role == 'STUDENT'}" href="/submit" th:classappend="${currentPath == '/submit'} ? 'active'"><span>↑</span>Nộp báo cáo</a>
+  <a th:if="${driveAdmin}" href="/drive-setup" th:classappend="${currentPath == '/drive-setup'} ? 'active'"><span>▱</span>Thiết lập Drive</a>
+  <a href="/oauth" th:classappend="${currentPath == '/oauth'} ? 'active'"><span>⌘</span>OAuth Lab<small>LAB</small></a>
+ </nav>
+ <div class="sidebar-note"><i></i>Kết nối Google<p>Drive · Gmail</p></div>
+ <div class="account"><span class="avatar" th:text="${@ui.initials(userName)}">U</span><div><strong th:text="${userName}"></strong><small th:text="${role == 'STUDENT' ? 'Sinh viên' : 'Giảng viên'}"></small></div></div>
+ <form th:action="@{/logout}" method="post"><button class="text-button logout" type="submit">Đăng xuất ↗</button></form>
+</aside>
+<header th:fragment="topbar(section)" class="topbar"><span>Không gian seminar <b>/</b> <strong th:text="${section}"></strong></span><div><span class="role-pill" th:text="${role}"></span><span class="avatar small" th:text="${@ui.initials(userName)}"></span></div></header>
+<div th:fragment="alerts" class="alerts" aria-live="polite"><div class="alert success" th:if="${success}" th:text="${success}"></div><div class="alert error" th:if="${error}" th:text="${error}"></div></div>
+<div th:fragment="grant(purpose,returnTo,label)" class="grant-action"><form th:action="${'/oauth/connect/' + purpose}" method="post"><input type="hidden" name="returnTo" th:value="${returnTo}"><button class="button primary" type="submit"><span class="google-g">G</span><span th:text="${label}"></span><span>↗</span></button></form></div>
+<footer th:fragment="footer" class="footer"><span>Seminar OAuth Hub</span><span>Google OAuth 2.0 · Bản thực hành</span></footer>
+</body></html>

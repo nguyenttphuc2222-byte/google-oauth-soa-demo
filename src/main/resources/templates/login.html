@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments :: head('Đăng nhập')}"></head><body class="login-body">
+<main class="login-layout"><section class="login-form"><div class="login-card">
+<span class="eyebrow">SEMINAR OAUTH HUB</span><h2>Bắt đầu với <br>tài khoản Google</h2>
+<p>Nộp báo cáo, nhận thông báo và xét duyệt bài seminar.</p><div th:replace="~{fragments :: alerts}"></div>
+<a th:if="${credentialsReady}" class="button google-login" href="/oauth2/authorization/google"><span class="google-g">G</span>Tiếp tục với Google<span>→</span></a>
+<button th:unless="${credentialsReady}" class="button google-login" disabled>Cần cấu hình Google trước</button>
+<div class="alert info" th:unless="${credentialsReady}">Điền Client ID / Secret trong .env theo README rồi khởi động lại app.</div>
+<div class="login-divider"></div><p class="small-text" th:text="${autoDomainRoles ? 'Dùng email TDTU: @student.tdtu.edu.vn dành cho sinh viên, @tdtu.edu.vn dành cho giảng viên. Tài khoản demo được phân quyền giảng viên.' : (autoStudentLogin ? 'Sinh viên dùng email @student.tdtu.edu.vn. Tài khoản giảng viên được cấp quyền riêng.' : 'Sử dụng tài khoản thuộc lớp học. Vai trò được xác định theo danh sách đã cấu hình.')}">Dùng email TDTU để đăng nhập.</p>
+<div class="login-trust"><span>✓ Đăng nhập Google</span><span>✓ Cấp quyền theo chức năng</span></div></div>
+<span class="muted small-text">Seminar OAuth Hub · Google OAuth 2.0 + OpenID Connect</span>
+</section></main></body></html>
