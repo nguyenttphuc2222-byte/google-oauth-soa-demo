@@ -35,20 +35,15 @@ Chạy Docker không yêu cầu cài Java/Maven trên máy host. Không cần c�
 
 ### Clone repository
 
-Thay URL mẫu bằng URL lấy từ nút **Code** trên GitHub của nhóm:
+```bash
+git clone https://github.com/nguyenttphuc2222-byte/google-oauth-soa-demo.git seminar-oauth
+```
 
 ```bash
-git clone "https://github.com/OWNER/REPOSITORY.git" seminar-oauth
 cd seminar-oauth
 ```
 
-Các lệnh trong README phải chạy tại thư mục chứa `pom.xml`, `compose.yaml`, `Dockerfile`, `.env.example`, `mvnw`, `mvnw.cmd`, `.mvn/` và `src/`. Nếu repository bọc thêm thư mục `seminar-oauth-app`, chạy tiếp:
-
-```bash
-cd seminar-oauth-app
-```
-
-Nếu tải ZIP, giải nén và mở terminal tại đúng thư mục này. Sau khi clone, chưa có `.env`, `target/` hoặc JAR là bình thường; bạn sẽ cấu hình và build ở các bước bên dưới.
+Các lệnh trong README phải chạy tại thư mục chứa `pom.xml`, `compose.yaml`, `Dockerfile`, `.env.example`, `mvnw`, `mvnw.cmd`, `.mvn/` và `src/`. 
 
 ## 2. Tạo và cấu hình Google Cloud project
 
