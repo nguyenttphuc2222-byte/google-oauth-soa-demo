@@ -5,3 +5,5 @@ data/
 seminar-app.jar
 .idea/
 .vscode/
+.demo-launch.lock
+.demo-env-*.tmp

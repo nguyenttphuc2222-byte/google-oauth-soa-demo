@@ -1,6 +1,6 @@
 # Seminar OAuth Hub
 
-Hướng dẫn tạo Google Cloud project, cấu hình OAuth/Google Drive và chạy chương trình bằng Docker hoặc Java. Cấu hình mặc định dùng `http://localhost:8080`, tài khoản TDTU và chế độ Drive `ISOLATED`.
+Hướng dẫn tạo Google Cloud project, cấu hình OAuth/Google Drive và chạy chương trình bằng Docker hoặc Java. Trên Windows, mở `CHAY_DEMO.bat` để nhập cấu hình bằng giao diện, tự lưu `.env`, tạo khóa Drive khi cần, chạy Docker và mở trình duyệt. Cấu hình mặc định dùng `http://localhost:8080`, tài khoản TDTU và chế độ Drive `ISOLATED`.
 
 Người triển khai thực hiện cấu hình một lần cho mỗi môi trường. Sinh viên và giảng viên truy cập website đã triển khai không cần tự tạo Google Cloud project.
 
@@ -44,6 +44,34 @@ cd seminar-oauth
 ```
 
 Các lệnh trong README phải chạy tại thư mục chứa `pom.xml`, `compose.yaml`, `Dockerfile`, `.env.example`, `mvnw`, `mvnw.cmd`, `.mvn/` và `src/`. 
+
+### Chạy nhanh trên Windows
+
+1. Cài [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/), chọn Linux containers và hoàn tất WSL 2/ảo hóa nếu Docker yêu cầu. Bộ khởi chạy dùng Windows PowerShell 5.1 có sẵn; không cần cài Python, Java hoặc Maven để chạy Docker.
+2. Chuẩn bị Google Cloud và thư mục Drive theo mục 2–3. Bạn cần Client ID, Client Secret, API key, Project number, ID thư mục và email chủ thư mục nếu dùng Drive tự động.
+3. Mở thư mục dự án trong **Windows File Explorer**, nhấn đúp **`CHAY_DEMO.bat`**. Bấm file trong VS Code chỉ mở trình soạn thảo, không chạy chương trình.
+4. Nếu `.env` chưa có, chương trình tạo từ mẫu và mở cửa sổ cấu hình. Nếu đã có, chương trình kiểm tra: đủ thì chạy tiếp, thiếu/sai định dạng thì mở cửa sổ với thông tin cũ để bạn hoàn thiện.
+5. Trong cửa sổ cấu hình, điền lần lượt các tab **Google Cloud**, **Google Drive**, **Địa chỉ local**. Có thể chọn **Nhập JSON OAuth** để lấy Client ID/Secret từ JSON Web application đã đăng ký callback đúng với tab Địa chỉ local. Nhập API key và Project number riêng.
+6. Bấm **Lưu và chạy**. Chương trình giữ những dòng cấu hình khác, kiểm tra Docker, tự sinh khóa Drive 32 byte Base64 nếu trống, chạy `docker compose up -d --build seminar-app`, chờ `/health`, rồi mở `http://localhost:8080` bằng trình duyệt mặc định (hoặc cổng bạn chọn).
+7. Kết nối chủ thư mục Drive theo mục 7. Sau đó tự thao tác nộp bài/xét duyệt để kiểm chứng; bộ khởi chạy không gửi bài hoặc email demo.
+
+Những lần sau chỉ cần nhấn đúp `CHAY_DEMO.bat`. Nếu Docker Desktop đã cài ở vị trí chuẩn nhưng chưa mở, bộ khởi chạy thử mở và chờ Engine. Nếu thiếu Docker/Compose hoặc WSL chưa sẵn sàng, cửa sổ lệnh giữ thông báo để bạn xử lý; chương trình không tự cài phần mềm hệ thống.
+
+Để mở lại giao diện cấu hình dù `.env` đã đủ, mở PowerShell tại thư mục dự án:
+
+```powershell
+.\CHAY_DEMO.bat -Configure
+```
+
+Để chạy và kiểm tra Backend nhưng không tự mở trình duyệt:
+
+```powershell
+.\CHAY_DEMO.bat -NoBrowser
+```
+
+Khóa Drive hợp lệ đang có được giữ nguyên. Nếu khóa không rỗng nhưng sai định dạng, giao diện yêu cầu khôi phục đúng khóa. Nếu khóa trống nhưng đã có volume/database, chương trình hỏi bạn khôi phục khóa hoặc chủ động chấp nhận tạo khóa mới và kết nối lại Drive; không tự quyết định thay khóa cho dữ liệu cũ.
+
+Các kiểm tra đầu vào xác nhận cú pháp và tính nhất quán local; chúng không chứng minh Google Cloud đã bật API, key đúng project hoặc tài khoản đã được quản trị viên cho phép. Bạn vẫn cần làm đúng mục 2–3 và cấp quyền Google khi sử dụng.
 
 ## 2. Tạo và cấu hình Google Cloud project
 
@@ -167,6 +195,8 @@ Nếu thư mục cũ đã chia sẻ rộng, tạo thư mục gốc mới cho ISO
 
 ## 4. Cấu hình .env
 
+**Windows dùng `CHAY_DEMO.bat`:** giao diện tự tạo/lưu `.env` và sinh khóa Drive theo luồng ở mục 1. Không cần thực hiện thủ công mục 4.1–4.2; các mục dưới đây dành cho cách cấu hình bằng tay hoặc tham khảo các biến.
+
 ### 4.1. Tạo file
 
 Chỉ sao chép mẫu khi cài đặt mới. Nếu đã có `.env` đang dùng, giữ file và sửa các mục cần thiết.
@@ -256,6 +286,8 @@ Các giá trị cần lấy hoặc xác nhận:
 Khi `AUTO_DOMAIN_ROLES=true`, email `@student.tdtu.edu.vn` nhận STUDENT, email `@tdtu.edu.vn` nhận LECTURER; tài khoản ngoại lệ được ưu tiên. Không cần thêm từng email vào hai danh sách. `LECTURER_EMAILS` không ghi đè quy tắc này. Muốn dùng allowlist cũ, đặt `AUTO_DOMAIN_ROLES=false` và cấu hình các danh sách phù hợp.
 
 ## 5. Chạy bằng Docker
+
+**Windows:** dùng `CHAY_DEMO.bat` theo mục 1 để tự cấu hình, khởi chạy và mở trình duyệt. Các lệnh dưới đây dành cho macOS/Linux hoặc khi muốn tự chạy/chẩn đoán Docker.
 
 Mở Docker Desktop/Engine trước. Trên Windows, dùng **Linux containers**; hoàn tất WSL 2/ảo hóa nếu Docker yêu cầu.
 

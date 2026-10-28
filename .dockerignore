@@ -4,3 +4,5 @@ data
 .git
 seminar-app.jar
 *.log
+.demo-launch.lock
+.demo-env-*.tmp
